@@ -1,0 +1,20 @@
+(define (count-change amount)
+  (cc amount 8))
+
+(define (cc amount kinds)
+  (cond ((= amount 0) 1)
+	((or (< amount 0) (= kinds 0)) 0)
+	(else (+ (cc amount
+		     (- kinds 1))
+		 (cc (- amount (first-denomination kinds))
+		     kinds)))))
+
+(define (first-denomination kinds)
+  (cond ((= kinds 1) 1)
+	((= kinds 2) 2)
+	((= kinds 3) 5)
+	((= kinds 4) 10)
+	((= kinds 5) 20)
+	((= kinds 6) 50)
+	((= kinds 7) 100)
+	((= kinds 8) 200)))
